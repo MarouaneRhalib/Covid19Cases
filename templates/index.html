@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Corona Statistics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+</head>
+<body>
+<h1> CORONA APP STATISTICS</h1>
+
+<h2>Select your City</h2>
+<form method="post" action="/">
+    <select name="country1" id="country1">
+        <option value="MAR">Morroco</option>
+        <option value="FRA">France</option>
+        <option value="ESP">Spain</option>
+        <option value="USA">US Of America</option>
+    </select>
+    <select name="country2" id="country2">
+        <option value="MAR">Morroco</option>
+        <option value="FRA" selected>France</option>
+        <option value="SPA">Spain</option>
+        <option value="USA">US Of America</option>
+    </select>
+    <select name="country3" id="country3">
+        <option value="MAR">Morroco</option>
+        <option value="FRA">France</option>
+        <option value="SPA">Spain</option>
+        <option value="USA" selected>US Of America</option>
+    </select>
+    <input type="submit" value="OK">
+</form>
+<div>
+    <h2>Corona cases {{c1}} {{c2}} {{c3}}</h2>
+    <canvas id="myChart"></canvas>
+    <h2>Corona deaths {{c1}} {{c2}} {{c3}}</h2>
+    <canvas id="myChart1"></canvas>
+
+
+</div>
+
+// CORONA CASES
+<script>
+var datesc1 = {{datesc1|safe}};
+var datesc2 = {{datesc2|safe}};
+var datesc3 = {{datesc3|safe}};
+var casesc1 = {{casesc1|safe}};
+var casesc2 = {{casesc2|safe}};
+var casesc3 = {{casesc3|safe}};
+
+var deathsc1 = {{deathsc1|safe}};
+var deathsc2 = {{deathsc2|safe}};
+var deathsc3 = {{deathsc3|safe}};
+
+console.log(datesc1);
+console.log(casesc1);
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: datesc1,
+        datasets: [{
+            label: '{{c1}}',
+            data: casesc1,
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            fill: false
+        }
+        ,{
+            label: '{{c2}}',
+            data: casesc2,
+            borderColor: 'rgb(12, 150, 100)',
+            borderWidth: 1,
+            fill: false
+            }
+        ,{
+            label: '{{c3}}',
+            data: casesc3,
+            borderColor: 'rgb(99, 99, 255)',
+            borderWidth: 1,
+            fill: false
+
+            }
+        ]
+    },
+    options: {}
+});
+</script>
+// CORONA DEATHS
+
+<script>
+var ctx1 = document.getElementById('myChart1').getContext('2d');
+var myChart1 = new Chart(ctx1, {
+    type: 'line',
+    data: {
+        labels: datesc1,
+        datasets: [{
+            label: '{{c1}}',
+            data: deathsc1,
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            fill: false
+        }
+        ,{
+            label: '{{c2}}',
+            data: deathsc2,
+            borderColor: 'rgb(12, 150, 100)',
+            borderWidth: 1,
+            fill: false
+            }
+        ,{
+            label: '{{c3}}',
+            data: deathsc3,
+            borderColor: 'rgb(99, 99, 255)',
+            borderWidth: 1,
+            fill: false
+
+            }
+        ]
+    },
+    options: {}
+});
+
+</script>
+</body>
+</html>
